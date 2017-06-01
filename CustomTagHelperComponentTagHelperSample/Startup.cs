@@ -26,7 +26,6 @@ namespace CustomTagHelperComponentTagHelperSample
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddApplicationInsightsTelemetry();
             services.AddTransient<ITagHelperComponent, MyTagHelperComponent>();
             services.AddMvc();
         }
@@ -34,13 +33,9 @@ namespace CustomTagHelperComponentTagHelperSample
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {
